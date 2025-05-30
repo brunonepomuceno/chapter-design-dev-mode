@@ -1,0 +1,50 @@
+Crie uma página web responsiva e visualmente atraente em HTML, CSS e JavaScript que apresente resultados de uma pesquisa com desenvolvedores frontend. A página deve incluir:
+
+1. **Cabeçalho elegante:**
+   - Título: "Resultados da Pesquisa: Insights de Frontend"
+   - Subtítulo: "Feedback dos desenvolvedores para melhoria contínua"
+   - Logotipo opcional no canto superior esquerdo
+
+2. **Seção de Metodologia:**
+   - Breve descrição (1 parágrafo): "Pesquisa realizada com [N] desenvolvedores frontend em [Mês/Ano], abordando tópicos como ferramentas, desafios e preferências de design."
+
+3. **Visualização de Dados:**
+   - Gráficos interativos usando Chart.js para mostrar:
+     a) Frameworks mais utilizados (gráfico de barras)
+     b) Satisfação com processos atuais (gráfico de pizza)
+     c) Tempo gasto por tarefa (gráfico de linha)
+   - Legenda clara para cada gráfico
+
+4. **Insights Chave (em cards):**
+   - 3-4 cards com destaques usando ícones do FontAwesome:
+     * "78% preferem componentes modulares"
+     * "Principais desafio: Consistência de design"
+     * "Ferramenta mais desejada: Sistema de design unificado"
+
+5. **Citações Relevantes:**
+   - 2-3 depoimentos marcantes de desenvolvedores com foto de avatar e nome
+
+6. **Próximos Passos:**
+   - Lista de ações planejadas baseadas nos resultados:
+     "1. Criar biblioteca de componentes compartilhada"
+     "2. Sessões mensais de alinhamento dev-designer"
+     "3. Documentar padrões de acessibilidade"
+
+7. **Rodapé Profissional:**
+   - "Relatório preparado para o Chapter de Design - [Data]"
+   - Botão "Solicitar dados completos"
+
+Requisitos técnicos:
+- Layout moderno com CSS Grid/Flexbox
+- Paleta de cores profissional (#2563EB para destaques, #1F2937 para texto, fundo #F9FAFB)
+- Fonte principal: 'Inter' do Google Fonts
+- Totalmente responsivo (mobile-first)
+- Animações sutis em hover
+- Usar Chart.js via CDN
+- Incluir ícones do FontAwesome
+
+Instruções para uso no Replit:
+1. Crie novo Repl com template HTML/CSS/JS
+2. Cole este prompt na descrição
+3. Substitua [N], [Mês/Ano] e dados de exemplo pelos reais
+4. Personalize cores conforme branding da empresa
