@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa: Insights de Frontend</title>
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Relatório de pesquisa com desenvolvedores frontend sobre processos de handoff, ferramentas e melhorias.">
+    <meta name="keywords" content="frontend, developers, handoff, survey, design, development">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M13 3v6h8l-8-6zm-2 0L3 9h8V3zm2 8H3v8a2 2 0 0 0 2 2h8v-8zm2 0v10h8a2 2 0 0 0 2-2V11h-10z'/%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                Frontend Insights
+            </div>
+            <h1>Resultados da Pesquisa: Insights de Frontend</h1>
+            <p>Feedback dos desenvolvedores para melhoria contínua</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        {% if data.error %}
+            <div class="error">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{ data.error }}
+            </div>
+        {% else %}
+            <!-- Methodology Section -->
+            <section class="methodology">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-microscope text-primary"></i>
+                    Metodologia
+                </h2>
+                <p>
+                    Pesquisa realizada com <strong>{{ data.total_responses }}</strong> desenvolvedores frontend em <strong>{{ data.survey_date }}</strong>, 
+                    abordando tópicos como ferramentas, processos de handoff, desafios e preferências de desenvolvimento. 
+                    A coleta de dados focou em identificar pontos de melhoria nos processos atuais e entender as necessidades 
+                    dos desenvolvedores para otimizar a colaboração entre design e desenvolvimento.
+                </p>
+            </section>
+
+            <!-- Data Visualization Section -->
+            <section class="section">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-chart-bar text-primary"></i>
+                    Visualização de Dados
+                </h2>
+                
+                <div class="charts-grid">
+                    <!-- IDE Preferences Chart -->
+                    <div class="chart-container">
+                        <h3 class="chart-title">
+                            <i class="fas fa-code"></i>
+                            IDEs Mais Utilizadas
+                        </h3>
+                        <div class="chart-wrapper">
+                            <canvas id="ideChart"></canvas>
+                        </div>
+                        <p class="text-center" style="color: var(--gray-600); font-size: 0.875rem;">
+                            Distribuição das ferramentas de desenvolvimento preferidas
+                        </p>
+                    </div>
+
+                    <!-- Satisfaction Chart -->
+                    <div class="chart-container">
+                        <h3 class="chart-title">
+                            <i class="fas fa-smile"></i>
+                            Satisfação com Dev Mode do Figma
+                        </h3>
+                        <div class="chart-wrapper">
+                            <canvas id="satisfactionChart"></canvas>
+                        </div>
+                        <p class="text-center" style="color: var(--gray-600); font-size: 0.875rem;">
+                            Avaliação de 1 (baixo) a 5 (alto) | Média: {{ data.avg_satisfaction }}
+                        </p>
+                    </div>
+
+                    <!-- Feedback Themes Chart -->
+                    <div class="chart-container" style="grid-column: 1 / -1;">
+                        <h3 class="chart-title">
+                            <i class="fas fa-comments"></i>
+                            Temas de Feedback sobre Handoffs
+                        </h3>
+                        <div class="chart-wrapper">
+                            <canvas id="feedbackChart"></canvas>
+                        </div>
+                        <p class="text-center" style="color: var(--gray-600); font-size: 0.875rem;">
+                            Aspectos mais mencionados pelos desenvolvedores (verde = positivo, vermelho = negativo)
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Insights Section -->
+            <section class="section">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-lightbulb text-primary"></i>
+                    Insights Principais
+                </h2>
+                
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="insight-title">IDE Dominante</h3>
+                        <p class="insight-description">
+                            <strong>{{ data.top_ide[0] }}</strong> é a IDE preferida por {{ data.top_ide[1] }} desenvolvedores, 
+                            demonstrando uma preferência clara por ferramentas modernas e versáteis.
+                        </p>
+                    </div>
+
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="insight-title">Aspecto Mais Valorizado</h3>
+                        <p class="insight-description">
+                            <strong>"{{ data.top_like[0] }}"</strong> foi mencionado {{ data.top_like[1] }} vezes como o aspecto mais apreciado nos handoffs, 
+                            indicando a importância da comunicação clara.
+                        </p>
+                    </div>
+
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="insight-title">Principal Desafio</h3>
+                        <p class="insight-description">
+                            <strong>"{{ data.top_dislike[0] }}"</strong> apareceu {{ data.top_dislike[1] }} vezes como ponto de melhoria, 
+                            sugerindo foco nesta área para otimizar os processos.
+                        </p>
+                    </div>
+
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="insight-title">Satisfação Geral</h3>
+                        <p class="insight-description">
+                            Nota média de <strong>{{ data.avg_satisfaction }}</strong> para o Dev Mode do Figma, 
+                            indicando boa aceitação da ferramenta entre os desenvolvedores.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Developer Quotes Section -->
+            {% if data.quotes %}
+            <section class="section">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-quote-left text-primary"></i>
+                    Depoimentos dos Desenvolvedores
+                </h2>
+                
+                <div class="quotes-grid">
+                    {% for quote in data.quotes %}
+                    <div class="quote-card">
+                        <p class="quote-text">{{ quote.text }}</p>
+                        <div class="quote-author">
+                            <img src="{{ quote.avatar }}" alt="Avatar de {{ quote.name }}" class="author-avatar">
+                            <span class="author-name">{{ quote.name }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Next Steps Section -->
+            <section class="section">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-route text-primary"></i>
+                    Próximos Passos
+                </h2>
+                
+                <div class="next-steps">
+                    <ol class="steps-list">
+                        <li>
+                            <div class="step-text">
+                                Implementar melhorias na documentação de edge cases nos handoffs
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-text">
+                                Criar sessões de treinamento para otimização do Dev Mode do Figma
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-text">
+                                Estabelecer padrões mais claros para especificações de telas e componentes
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-text">
+                                Desenvolver processo de feedback contínuo entre design e desenvolvimento
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-text">
+                                Organizar workshops mensais de alinhamento e melhores práticas
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        {% endif %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>Relatório preparado para o Chapter de Design</strong>
+                    <span>{{ data.report_date if data.report_date else 'Dezembro de 2024' }}</span>
+                </div>
+                
+                <button id="requestDataBtn" class="btn-request-data">
+                    <i class="fas fa-download"></i>
+                    Solicitar dados completos
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    
+    <!-- Performance and accessibility optimizations -->
+    <script>
+        // Preload critical resources
+        if ('serviceWorker' in navigator) {
+            // Service worker could be added here for offline functionality
+        }
+        
+        // Add loading states
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any loading indicators when page is fully loaded
+            const loadingElements = document.querySelectorAll('.loading');
+            loadingElements.forEach(el => el.remove());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+Carimbo de data/hora,Com quais IDEs você trabalha na frete?,Do que você MAIS GOSTA nos Handoffs?,Do que você MENOS GOSTA nos Handoffs?,O que você incluiria no Handoff?,O Dev Mode do Figma facilita o entendimento dos fluxos?,Você tem alguma sugestões de melhorias para o handoff?,Nome,Fala que eu te escuto
+26/03/2025 17:02:03,Visual Studio Code,"Clareza nos fluxos, Especificações das telas (espaçamentos, componentes do DS, ...), Edge cases",Comentários,Deixar claro todos os fluxos,4,Não esquecer da versão mobile,Walmir Lucena,
+26/03/2025 17:02:49,Visual Studio Code,"Clareza nos fluxos, Especificações das telas (espaçamentos, componentes do DS, ...), Estados dos principais fluxos","Comentários, Organização dos artefatos, Edge cases",Componentização de fluxos que se repetem.,5,Sempre estar atento aos edge cases do fluxo. Muitas vezes eles estão ausentes e a gente só pega eles na hora do desenvolvimento (acho que é uma falha de refinamento também).,Davy de Souza Assunção,
+26/03/2025 17:03:55,NeoVim,"Clareza nos fluxos, Especificações das telas (espaçamentos, componentes do DS, ...), Edge cases",Comentários,É interessante adicionar casos de exceção,5,,,
+26/03/2025 17:18:46,Visual Studio Code,"Clareza nos fluxos, Comentários",Edge cases,,5,"As vezes o Handoff acontece na hora errada, quando estamos focando em finalizar uma outra tarefa, e acaba misturando os contextos",Luiz Oliveira,
+26/03/2025 18:26:21,Visual Studio Code,"Clareza nos fluxos, Organização dos artefatos","Especificações das telas (espaçamentos, componentes do DS, ...)",,5,"Mais variedade/categorização de Edge Cases. Acredito que pode ser uma oportunidade de melhoria separa-los por fluxo. Em algumas oportunidades os cenários se misturaram ou faltaram Edge cases que só foram ser adicionados posteriormente, então talvez categorizar eles seja um ganho no fluxo de desenvolvimento e na veloc ...[Truncated]",
+09/04/2025 16:21:30,Visual Studio Code,"Clareza nos fluxos, Organização dos artefatos, Especificações das telas (espaçamentos, componentes do DS, ...), Edge cases, Estados dos principais fluxos",Comentários,"Acho que mais especificações nos fluxos, de sucesso e falha, para ficar mais claro e facil de identificar.",5,,Hugo Leonardo Otaviano de Paula,
+09/04/2025 17:01:14,Visual Studio Code,"Clareza nos fluxos, Comentários","Edge cases, Acho que falta Edge cases na maiorias dos Handoffs",,5,,Luiz Oliveira,
+24/04/2025 17:41:26,Visual Studio Code,"Clareza nos fluxos, Especificações das telas (espaçamentos, componentes do DS, ...), Estados dos principais fluxos",Quando não tem muita clareza nos fluxos,,2,,Victor Carli,"sobre a pergunta: 
+O Dev Mode do Figma facilita o entendimento dos fluxos?
+
+Até o momento, não percebi um ganho significativo de entendimento dos fluxos com o Dev Mode. 
+
+Comentei isso porque votei 2 na avaliação, e mesmo utilizando a funcionalidade no desenvolvimento de uma nova feature, ainda não senti que ela está realmente agregando valor. 
+
+A impressão é de que o comportamento permanece similar ao anterior, sem mudanças notáveis que facilitem a compreensão dos fluxos."
