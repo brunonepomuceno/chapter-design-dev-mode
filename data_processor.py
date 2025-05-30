@@ -5,7 +5,7 @@ from datetime import datetime
 
 class SurveyDataProcessor:
     def __init__(self):
-        self.csv_file = 'attached_assets/Handoff - Investigar e melhorar processos com pessoas desenvolvedoras (respostas) - Respostas ao formulário 1.csv'
+        self.csv_file = 'data/survey_responses.csv'
         self.responses = []
         self.load_data()
     
