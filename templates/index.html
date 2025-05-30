@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa: Insights de Frontend</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo"><i class="fas fa-chart-bar"></i> Chapter Design</div>
+            <h1>Resultados da Pesquisa: Insights de Frontend</h1>
+            <p>Feedback dos desenvolvedores para melhoria contínua</p>
+        </div>
+    </header>
+    <main class="container">
+        {% if data.error %}
+            <div class="error">{{ data.error }}</div>
+        {% else %}
+            <section class="methodology section">
+                <p>Pesquisa realizada com {{ data.total_responses }} desenvolvedores frontend em {{ data.survey_date }}, abordando tópicos como ferramentas, desafios e preferências de design.</p>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Visualização de Dados</h2>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title"><i class="fas fa-laptop-code"></i> IDEs mais utilizadas</h3>
+                        <div class="chart-wrapper"><canvas id="ideChart"></canvas></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title"><i class="fas fa-face-smile"></i> Satisfação com Dev Mode</h3>
+                        <div class="chart-wrapper"><canvas id="satisfactionChart"></canvas></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title"><i class="fas fa-comments"></i> Feedback sobre Handoffs</h3>
+                        <div class="chart-wrapper"><canvas id="feedbackChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Insights Chave</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="insight-title">IDE Dominante</div>
+                        <div class="insight-description">{{ data.top_ide[0] }} ({{ data.top_ide[1] }} devs)</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-thumbs-up"></i></div>
+                        <div class="insight-title">Aspecto Mais Valorizado</div>
+                        <div class="insight-description">{{ data.top_like[0] }} ({{ data.top_like[1] }} menções)</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-thumbs-down"></i></div>
+                        <div class="insight-title">Principal Desafio</div>
+                        <div class="insight-description">{{ data.top_dislike[0] }} ({{ data.top_dislike[1] }} menções)</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon"><i class="fas fa-star"></i></div>
+                        <div class="insight-title">Satisfação Dev Mode</div>
+                        <div class="insight-description">Nota {{ data.avg_satisfaction }}/5</div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <h2 class="section-title">Citações Relevantes</h2>
+                <div class="quotes-grid">
+                    {% for quote in data.quotes %}
+                    <div class="quote-card">
+                        <div class="quote-text">"{{ quote.text }}"</div>
+                        <div class="quote-author">
+                            <img class="author-avatar" src="{{ quote.avatar }}" alt="Avatar">
+                            <span class="author-name">{{ quote.name }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="section next-steps">
+                <h2 class="section-title">Próximos Passos</h2>
+                <ul class="steps-list">
+                    <li><span class="step-text">Implementar melhorias na documentação de edge cases nos handoffs</span></li>
+                    <li><span class="step-text">Criar sessões de treinamento para otimização do Dev Mode do Figma</span></li>
+                    <li><span class="step-text">Estabelecer padrões mais claros para especificações de telas e componentes</span></li>
+                    <li><span class="step-text">Desenvolver processo de feedback contínuo entre design e desenvolvimento</span></li>
+                    <li><span class="step-text">Organizar workshops mensais de alinhamento e melhores práticas</span></li>
+                </ul>
+            </section>
+        {% endif %}
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <strong>Relatório preparado para o Chapter de Design</strong>
+                    <span>{{ data.report_date }}</span>
+                </div>
+                <button id="requestDataBtn" class="btn-request-data"><i class="fas fa-download"></i> Solicitar dados completos</button>
+            </div>
+        </footer>
+    </main>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
