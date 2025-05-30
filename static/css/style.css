@@ -429,66 +429,147 @@ body {
     text-align: center;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Responsive design - Apple-style */
+@media (max-width: 1068px) {
+    .container {
+        max-width: 692px;
+        padding: 0 40px;
+    }
+    
     .header h1 {
-        font-size: 2rem;
+        font-size: 40px;
+        line-height: 1.1;
     }
     
     .header p {
-        font-size: 1rem;
+        font-size: 21px;
+        line-height: 1.381;
+    }
+    
+    .section-title {
+        font-size: 32px;
+        line-height: 1.125;
     }
     
     .charts-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .chart-container {
-        padding: 1.5rem;
+        padding: 32px;
     }
     
-    .insights-grid {
-        grid-template-columns: 1fr;
+    .chart-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 735px) {
+    .container {
+        padding: 0 16px;
     }
     
-    .quotes-grid {
-        grid-template-columns: 1fr;
+    .header {
+        padding: 40px 0 80px;
+    }
+    
+    .header-content {
+        padding: 0 16px;
+    }
+    
+    .header h1 {
+        font-size: 32px;
+        line-height: 1.125;
+        margin-bottom: 16px;
+    }
+    
+    .header p {
+        font-size: 19px;
+        line-height: 1.421;
+    }
+    
+    .section {
+        margin: 80px 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        line-height: 1.143;
+        margin-bottom: 24px;
     }
     
     .methodology {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        padding: 1.5rem;
+        padding: 32px 24px;
+        margin: -60px 16px 80px;
+        max-width: none;
+    }
+    
+    .methodology p {
+        font-size: 19px;
+        line-height: 1.421;
+    }
+    
+    .charts-grid {
+        margin: 40px 0;
+    }
+    
+    .chart-container {
+        padding: 24px;
+    }
+    
+    .chart-title {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+    
+    .insights-grid,
+    .quotes-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin: 40px 0;
+    }
+    
+    .insight-card,
+    .quote-card {
+        padding: 24px;
+    }
+    
+    .insight-title {
+        font-size: 21px;
+        line-height: 1.19;
+    }
+    
+    .next-steps {
+        padding: 32px 24px;
+        margin: 40px 0;
+    }
+    
+    .steps-list li {
+        padding: 16px 0 16px 60px;
+    }
+    
+    .steps-list li::before {
+        width: 40px;
+        height: 40px;
+        top: 16px;
+        font-size: 15px;
+    }
+    
+    .step-text {
+        font-size: 17px;
+        line-height: 1.47;
+    }
+    
+    .footer {
+        padding: 60px 0 40px;
+        margin-top: 80px;
     }
     
     .footer-content {
         flex-direction: column;
         text-align: center;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 0.5rem;
-    }
-    
-    .header {
-        padding: 2rem 0;
-    }
-    
-    .insight-card,
-    .quote-card,
-    .chart-container {
-        padding: 1.5rem;
-    }
-    
-    .methodology {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
+        gap: 24px;
     }
 }
 
