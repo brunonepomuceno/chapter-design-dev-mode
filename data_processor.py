@@ -5,7 +5,7 @@ from datetime import datetime
 
 class SurveyDataProcessor:
     def __init__(self):
-        self.csv_file = 'data/survey_responses.csv'
+        self.csv_file = 'attached_assets/Handoff - Investigar e melhorar processos com pessoas desenvolvedoras (respostas) - Respostas ao formulário 1.csv'
         self.responses = []
         self.load_data()
     
@@ -16,7 +16,9 @@ class SurveyDataProcessor:
                 with open(self.csv_file, 'r', encoding='utf-8') as file:
                     reader = csv.DictReader(file)
                     self.responses = list(reader)
+                print(f"Loaded {len(self.responses)} survey responses")
             else:
+                print(f"CSV file not found: {self.csv_file}")
                 self.responses = []
         except Exception as e:
             print(f"Error loading CSV data: {e}")
@@ -26,8 +28,9 @@ class SurveyDataProcessor:
         """Extract IDE usage data"""
         ide_counts = Counter()
         for response in self.responses:
-            ide = response.get('Com quais IDEs você trabalha na frete?', '').strip()
-            if ide:
+            ide_field = response.get('Com quais IDEs você trabalha na frete?', '')
+            if ide_field and ide_field.strip():
+                ide = ide_field.strip()
                 ide_counts[ide] += 1
         return dict(ide_counts)
     
@@ -35,9 +38,11 @@ class SurveyDataProcessor:
         """Extract Dev Mode satisfaction ratings"""
         ratings = []
         for response in self.responses:
-            rating = response.get('O Dev Mode do Figma facilita o entendimento dos fluxos?', '').strip()
-            if rating and rating.isdigit():
-                ratings.append(int(rating))
+            rating_field = response.get('O Dev Mode do Figma facilita o entendimento dos fluxos?', '')
+            if rating_field and str(rating_field).strip():
+                rating_str = str(rating_field).strip()
+                if rating_str.isdigit():
+                    ratings.append(int(rating_str))
         
         # Count ratings distribution
         rating_counts = Counter(ratings)
@@ -53,16 +58,18 @@ class SurveyDataProcessor:
         dislikes = []
         
         for response in self.responses:
-            like = response.get('Do que você MAIS GOSTA nos Handoffs?', '').strip()
-            dislike = response.get('Do que você MENOS GOSTA nos Handoffs?', '').strip()
+            like_field = response.get('Do que você MAIS GOSTA nos Handoffs?', '')
+            dislike_field = response.get('Do que você MENOS GOSTA nos Handoffs?', '')
             
-            if like:
+            if like_field and str(like_field).strip():
+                like = str(like_field).strip()
                 # Split by commas and clean up
-                like_items = [item.strip() for item in like.split(',')]
+                like_items = [item.strip() for item in like.split(',') if item.strip()]
                 likes.extend(like_items)
             
-            if dislike:
-                dislike_items = [item.strip() for item in dislike.split(',')]
+            if dislike_field and str(dislike_field).strip():
+                dislike = str(dislike_field).strip()
+                dislike_items = [item.strip() for item in dislike.split(',') if item.strip()]
                 dislikes.extend(dislike_items)
         
         return {
@@ -74,9 +81,13 @@ class SurveyDataProcessor:
         """Extract meaningful developer quotes"""
         quotes = []
         for response in self.responses:
-            name = response.get('Nome', '').strip()
-            feedback = response.get('Fala que eu te escuto', '').strip()
-            suggestions = response.get('Você tem alguma sugestões de melhorias para o handoff?', '').strip()
+            name_field = response.get('Nome', '')
+            feedback_field = response.get('Fala que eu te escuto', '')
+            suggestions_field = response.get('Você tem alguma sugestões de melhorias para o handoff?', '')
+            
+            name = str(name_field).strip() if name_field else ''
+            feedback = str(feedback_field).strip() if feedback_field else ''
+            suggestions = str(suggestions_field).strip() if suggestions_field else ''
             
             if name and (feedback or suggestions):
                 quote_text = feedback if len(feedback) > len(suggestions) else suggestions
