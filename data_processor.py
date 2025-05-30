@@ -12,13 +12,14 @@ class SurveyDataProcessor:
     def load_data(self):
         """Load and parse CSV data"""
         try:
+            print(f"[DEBUG] Procurando arquivo: {os.path.abspath(self.csv_file)}")
             if os.path.exists(self.csv_file):
                 with open(self.csv_file, 'r', encoding='utf-8') as file:
                     reader = csv.DictReader(file)
                     self.responses = list(reader)
                 print(f"Loaded {len(self.responses)} survey responses")
             else:
-                print(f"CSV file not found: {self.csv_file}")
+                print(f"[ERRO] CSV file not found: {self.csv_file}")
                 self.responses = []
         except Exception as e:
             print(f"Error loading CSV data: {e}")
