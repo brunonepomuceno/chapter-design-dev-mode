@@ -150,7 +150,6 @@ class PDFReportGenerator:
         
         # IDE Chart
         ide_file = 'temp_ide_chart.png'
-        self.create_chart_image('ide_preferences', chart_data['ide_chart']['labels'], ide_file)
         ide_data_dict = dict(zip(chart_data['ide_chart']['labels'], chart_data['ide_chart']['data']))
         self.create_chart_image('ide_preferences', ide_data_dict, ide_file)
         chart_files.append(ide_file)

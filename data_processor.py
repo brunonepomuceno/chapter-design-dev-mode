@@ -64,12 +64,12 @@ class SurveyDataProcessor:
             if like_field and str(like_field).strip():
                 like = str(like_field).strip()
                 # Split by commas and clean up
-                like_items = [item.strip() for item in like.split(',') if item.strip()]
+                like_items = [item.strip() for item in like.split(',') if item.strip() and not item.strip().endswith('...)')]
                 likes.extend(like_items)
             
             if dislike_field and str(dislike_field).strip():
                 dislike = str(dislike_field).strip()
-                dislike_items = [item.strip() for item in dislike.split(',') if item.strip()]
+                dislike_items = [item.strip() for item in dislike.split(',') if item.strip() and not item.strip().endswith('...)')]
                 dislikes.extend(dislike_items)
         
         return {
