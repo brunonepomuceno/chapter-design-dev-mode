@@ -266,25 +266,23 @@ class SurveyDashboard {
         if (!btn) return;
 
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando relatório...';
         btn.disabled = true;
 
         try {
-            const response = await fetch('/api/request-data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to submit request');
-            }
-
-            const result = await response.json();
+            // Create a direct download link
+            const downloadUrl = '/api/download-report';
+            
+            // Create a temporary link to trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = '';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
             
             // Show success message
-            btn.innerHTML = '<i class="fas fa-check"></i> Solicitação Enviada!';
+            btn.innerHTML = '<i class="fas fa-check"></i> Download iniciado!';
             btn.style.backgroundColor = '#10B981';
             
             setTimeout(() => {
@@ -294,7 +292,7 @@ class SurveyDashboard {
             }, 3000);
 
         } catch (error) {
-            console.error('Error submitting data request:', error);
+            console.error('Error downloading report:', error);
             btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro - Tente novamente';
             btn.style.backgroundColor = '#EF4444';
             
